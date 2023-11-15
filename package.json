@@ -9,21 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "jsonwebtoken": "^9.0.2",
-    "md5": "^2.3.0",
-    "mongoose": "^8.0.0",
+    "@cosmicjs/sdk": "1.0.10",
+    "cosmic": "0.0.0",
+    "cosmicjs": "4.3.7",
+    "jsonwebtoken": "9.0.2",
+    "md5": "2.3.0",
+    "mongoose": "8.0.0",
+    "multer": "1.4.5-lts.1",
     "next": "14.0.1",
-    "react": "^18",
-    "react-dom": "^18"
+    "next-connect": "0.13.0",
+    "react": "18",
+    "react-dom": "18"
   },
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.5",
-    "@types/md5": "^2.3.5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
+    "@types/jsonwebtoken": "9.0.5",
+    "@types/md5": "2.3.5",
+    "@types/multer": "^1.4.10",
+    "@types/node": "20",
+    "@types/react": "18",
+    "@types/react-dom": "18",
+    "eslint": "8",
     "eslint-config-next": "14.0.1",
-    "typescript": "^5"
+    "typescript": "5"
   }
 }
