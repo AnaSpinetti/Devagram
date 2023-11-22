@@ -1,7 +1,7 @@
+import { connectMongoDB } from '../../../middlewares/connectMongoDB';
 import type { NextApiRequest, NextApiResponse} from 'next';
 import type { DefaultResponse } from '../../../types/DefaultResponse';
 import type { RegisterResponse } from '../../../types/RegisterResponse';
-import { connectMongoDB } from '../../../middlewares/connectMongoDB';
 import { UserModel } from '../../../models/UserModel';
 import md5 from 'md5';
 import { upload, uploadCosmic } from '../../../services/uploadImageCosmic';
