@@ -9,7 +9,7 @@ import nc from 'next-connect';
 
 const handler = nc()
     .use(upload.single('file')) 
-    .post(async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
+    .post(async (req: any, res: NextApiResponse<DefaultResponse>) => {
 
     try {
         // usando o RegisterResponse para que seja usado do body apenas os itens definidos no type
