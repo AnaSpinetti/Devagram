@@ -8,7 +8,7 @@ import { upload, uploadCosmic } from '../../../services/uploadImageCosmic';
 import nc from 'next-connect';
 
 const handler = nc()
-    .use(upload.single('avatar')) 
+    .use(upload.single('file')) 
     .post(async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
 
     try {
@@ -55,7 +55,7 @@ const handler = nc()
 
 export const config = {
     api: {
-        bodyParser: false
+        bodyParser: false,
     }
 }
 

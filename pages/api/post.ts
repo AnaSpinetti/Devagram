@@ -9,7 +9,7 @@ import { UserModel } from "../../models/UserModel";
 
 
 const handler = nextConnect()
-    .use(upload.single('image'))
+    .use(upload.single('file'))
     .post(async (req: any, res: NextApiResponse<DefaultResponse>) => {
         try {
             const {userId} = req.query;
@@ -28,20 +28,22 @@ const handler = nextConnect()
                 return res.status(400).json({ error: "A imagem é obrigatória na publicação"})
             }
 
-            const imagePost = await uploadCosmic(req);
+            const imageFile = await uploadCosmic(req);
+            //console.log(imageFile);
+            
             const post = {
                 idUser: user._id,
                 description,
-                image: imagePost.media.url,
+                image: imageFile?.media.url,
                 date: new Date()
             }
 
             await PostModel.create(post);
-            res.status(200).json({msg: "Publicação enviada!"})
+            return res.status(200).json({msg: "Publicação enviada!"})
 
         } catch (error) {
             console.log(error);
-            return res.status(500).json({error: "Não foi possível enviar sua publicação, tente novamente ou fale com o suporte"});
+            return res.status(500).json({error: "Não foi possível enviar sua publicação, tente novamente ou fale com o suporte" + error});
         }
     })
 

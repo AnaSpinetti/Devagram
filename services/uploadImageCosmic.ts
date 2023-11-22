@@ -17,26 +17,21 @@ const uploadCosmic = async(req: any) => {
         if(!req.file.originalname.includes(".jpg") && !req.file.originalname.includes(".png") && !req.file.originalname.includes(".jpeg")){
             throw new Error("Extensão de imagem inválida");
         }
-
+        
         const media_object = {
-            originalname: req.file.originalname,
+            originalname: req?.file?.originalname,
             buffer: req.file.buffer
         };
         
-        if(req.url && req.url.includes("post")){
+        if(req.url && req.url.includes("register")){
             return await bucketDevagram.media.insertOne({
-                media: media_object, 
-                folder: "post"
-            });
-        }else if(req.url && req.url.includes("register")){
-                return await bucketDevagram.media.insertOne({
                 media: media_object, 
                 folder: "avatar"
             });
         }else{
-            return await bucketDevagram.media.insertOne({
+                return await bucketDevagram.media.insertOne({
                 media: media_object, 
-                folder: "stories"
+                folder: "post"
             });
         }
     }
