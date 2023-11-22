@@ -29,7 +29,6 @@ const handler = nc()
                 if(image && image.media && image.media.url){
                     user.avatar = image.media.url
                 }
-                
             }
 
             await UserModel.findByIdAndUpdate({_id: user._id}, user); 
