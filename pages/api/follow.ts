@@ -3,7 +3,7 @@ import type { DefaultResponse } from "../../types/DefaultResponse";
 import { validateJWT } from "../../middlewares/validateJWT";
 import { connectMongoDB } from "../../middlewares/connectMongoDB";
 import { UserModel } from "../../models/UserModel";
-import { FollowModel } from "../../models/followModel";
+import { FollowModel } from "../../models/FollowModel";
 
 const followEndpoint = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
 

@@ -38,6 +38,10 @@ const handler = nextConnect()
                 date: new Date()
             }
 
+            // Atualizando a quantidade de publicaçoes do usuario
+            user.posts++
+            await UserModel.findByIdAndUpdate({_id: user._id}, user)
+
             await PostModel.create(post);
             return res.status(200).json({msg: "Publicação enviada!"})
 
