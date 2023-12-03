@@ -5,6 +5,7 @@ import { PostModel } from '../../models/PostModel';
 import { DefaultResponse } from '../../types/DefaultResponse';
 import { connectMongoDB } from '../../middlewares/connectMongoDB';
 import { FollowModel } from '../../models/FollowModel';
+import { corsPolicy } from '../../middlewares/corsPolicy';
 
 const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse | any>) => {
     try {
@@ -64,4 +65,4 @@ const feedEndpoint = async (req: NextApiRequest, res: NextApiResponse<DefaultRes
     }
 };
 
-export default validateJWT(connectMongoDB(feedEndpoint));
+export default corsPolicy(validateJWT(connectMongoDB(feedEndpoint)));

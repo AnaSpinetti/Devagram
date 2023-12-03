@@ -18,8 +18,10 @@
     "multer": "1.4.5-lts.1",
     "next": "14.0.1",
     "next-connect": "0.12.1",
+    "nextjs-cors": "^2.1.2",
     "react": "18",
-    "react-dom": "18"
+    "react-dom": "18",
+    "save": "^2.9.0"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "9.0.5",

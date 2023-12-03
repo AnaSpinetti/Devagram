@@ -6,6 +6,7 @@ import { connectMongoDB } from "../../middlewares/connectMongoDB";
 import { validateJWT } from "../../middlewares/validateJWT"; 
 import { PostModel } from "../../models/PostModel";
 import { UserModel } from "../../models/UserModel";
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 
 const handler = nextConnect()
@@ -57,4 +58,4 @@ export const config = {
     }
 }
 
-export default validateJWT(connectMongoDB(handler));
+export default corsPolicy(validateJWT(connectMongoDB(handler)));

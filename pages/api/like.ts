@@ -4,6 +4,7 @@ import { validateJWT } from "../../middlewares/validateJWT";
 import { connectMongoDB } from "../../middlewares/connectMongoDB";
 import { PostModel } from "../../models/PostModel";
 import { UserModel } from "../../models/UserModel";
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 const likeEndpoint = async(req: NextApiRequest, res: NextApiResponse<DefaultResponse>) => {
     
@@ -48,4 +49,4 @@ const likeEndpoint = async(req: NextApiRequest, res: NextApiResponse<DefaultResp
     }
 }
 
-export default validateJWT(connectMongoDB(likeEndpoint))
+export default corsPolicy(validateJWT(connectMongoDB(likeEndpoint)))

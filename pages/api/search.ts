@@ -4,6 +4,7 @@ import { connectMongoDB } from "../../middlewares/connectMongoDB"
 import { validateJWT } from '../../middlewares/validateJWT';
 import { UserModel } from "../../models/UserModel";
 import { resolveSoa } from "dns";
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 const searchEndpoint = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse | any[]>) => {
     try {
@@ -45,4 +46,4 @@ const searchEndpoint = async (req: NextApiRequest, res: NextApiResponse<DefaultR
     }
 }
 
-export default validateJWT(connectMongoDB(searchEndpoint))
+export default corsPolicy(validateJWT(connectMongoDB(searchEndpoint)))

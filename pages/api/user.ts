@@ -5,6 +5,7 @@ import { DefaultResponse } from "../../types/DefaultResponse";
 import { UserModel } from "../../models/UserModel";
 import nc from 'next-connect';
 import { upload, uploadCosmic } from "../../services/uploadImageCosmic";
+import { corsPolicy } from "../../middlewares/corsPolicy";
 
 const handler = nc()
     .use(upload.single('file'))
@@ -71,4 +72,4 @@ const handler = nc()
         }
     }
 
-export default validateJWT(connectMongoDB(handler));
+export default corsPolicy(validateJWT(connectMongoDB(handler)));

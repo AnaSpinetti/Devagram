@@ -5,6 +5,7 @@ import {connectMongoDB} from "../../../middlewares/connectMongoDB";
 import { UserModel } from "../../../models/UserModel";
 import md5 from "md5";
 import jwt from "jsonwebtoken";
+import { corsPolicy } from "../../../middlewares/corsPolicy";
 
 const endPointLogin = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse | LoginResponse>) => {
     
@@ -32,4 +33,4 @@ const endPointLogin = async (req: NextApiRequest, res: NextApiResponse<DefaultRe
     }
 }
 
-export default connectMongoDB(endPointLogin);
+export default corsPolicy(connectMongoDB(endPointLogin));
