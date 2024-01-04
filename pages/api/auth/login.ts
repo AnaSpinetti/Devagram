@@ -26,6 +26,7 @@ const endPointLogin = async (req: NextApiRequest, res: NextApiResponse<DefaultRe
 
             return res.status(200).json({name: loggedUser.name, email: loggedUser.email, token});
         }
+        
         return res.status(400).json({ error: 'Usuário ou senha inválidos' })
 
     }else{

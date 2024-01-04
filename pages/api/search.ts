@@ -3,8 +3,8 @@ import type { DefaultResponse } from "../../types/DefaultResponse";
 import { connectMongoDB } from "../../middlewares/connectMongoDB"
 import { validateJWT } from '../../middlewares/validateJWT';
 import { UserModel } from "../../models/UserModel";
-import { resolveSoa } from "dns";
 import { corsPolicy } from "../../middlewares/corsPolicy";
+import { FollowModel } from "../../models/FollowModel";
 
 const searchEndpoint = async (req: NextApiRequest, res: NextApiResponse<DefaultResponse | any[]>) => {
     try {
@@ -17,9 +17,25 @@ const searchEndpoint = async (req: NextApiRequest, res: NextApiResponse<DefaultR
                     return res.status(400).json({ error: 'Usuário não encontrado' })
                 }
 
-                userFound.password = null;
+                const user = {
+                    password: null,
+                    followThisUser: false,
+                    name: userFound.name,
+                    email: userFound.email,
+                    _id: userFound._id,
+                    avatar: userFound.avatar,
+                    followers: userFound.followers,
+                    following: userFound.following,
+                    posts: userFound.posts,
+                } as any;
 
-                return res.status(200).json(userFound)
+                const isFollowing = await FollowModel.find({ userAuthenticated: req?.query?.userId, followedUser: userFound._id });
+
+                if (isFollowing && isFollowing.length > 0) {
+                    user.followThisUser = true;
+                }
+
+                return res.status(200).json(user)
 
             } else {
                 const { filter } = req.query;

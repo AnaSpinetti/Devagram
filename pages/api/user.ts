@@ -41,10 +41,11 @@ const handler = nc()
         }
     })
     .get(async (req: NextApiRequest, res: NextApiResponse<DefaultResponse | any>) => {
-    
+
         try {
             const {userId} = req?.query;
             const user = await UserModel.findById(userId);
+
             
             const userToReturn = {
                 id: user._id,
@@ -54,7 +55,7 @@ const handler = nc()
                 followers: user.followers,
                 following: user.following, 
                 posts: user.posts
-            }
+            } as any
             
             return res.status(200).json(userToReturn);
     
